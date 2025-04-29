@@ -1,0 +1,736 @@
+/* Reset e base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', 'Poppins', sans-serif;
+    color: #fff;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+/* Sessão principal */
+.hero {
+    background: url('Home.png') no-repeat center center/cover;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 60px;
+}
+
+/* Topo */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #000;
+}
+
+.nav-links a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    opacity: 1;
+    text-decoration: underline;
+    color: #d89100;
+    outline: none;
+}
+
+/* Texto principal */
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 60px;
+    position: relative;
+}
+
+.text-block h5 {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.6;
+    color: #0c0c0c;
+}
+
+.text-block h1 {
+    font-size: 80px;
+    line-height: 1.1;
+    margin: 10px 0;
+    font-weight: 900;
+    color: #0c0c0c;
+    text-shadow: 1px 1px 2px rgba(10, 10, 10, 0.4);
+}
+
+.text-block p {
+    max-width: 480px;
+    margin: 20px 0;
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.85;
+    color: #333;
+}
+
+
+.browse-button,
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background-color: #a01919b0;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 30px;
+    border: none; /* <<< Aqui remove a borda */
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.5s ease;
+}
+
+
+.browse-button .truck {
+    display: inline-block;
+    font-size: px;
+    position: relative;
+    left: 0;
+    transition: left 2s ease;
+}
+
+.browse-button .smoke {
+    display: inline-block;
+    opacity: 0;
+    font-size: 20px;
+    position: absolute;
+    left: 10px;
+    animation: smoke-move 2s infinite;
+    pointer-events: none;
+}
+
+.browse-button .text {
+    font-size: 16px;
+    transition: opacity 1.5s ease;
+}
+
+.browse-button.moving .truck {
+    animation: truck-move 2s forwards;
+}
+
+.browse-button.moving .smoke {
+    opacity: 1;
+}
+
+.browse-button.moving .text {
+    animation: text-fade 2s forwards;
+}
+
+/* As animações continuam iguais */
+@keyframes truck-move {
+    0% { left: 0; }
+    100% { left: 150px; }
+}
+
+@keyframes smoke-move {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-10px) scale(1.2); opacity: 0.5; }
+    100% { transform: translateY(-20px) scale(1.5); opacity: 0; }
+}
+
+@keyframes text-fade {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0; }
+}
+
+/* Carrossel */
+.carousel-container {
+    margin-top: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    min-width: 180px;
+    height: 260px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.07);
+}
+
+.card img {
+    width: 100%;
+    height: 75%;
+    object-fit: cover;
+}
+
+.card span {
+    display: block;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #222;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+/* Setas do carrossel */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20 20px;
+    transform: translateY(250%);
+    pointer-events: none;
+}
+
+.carousel-nav button {
+    width: 42px;
+    height: 42px;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    color: #333;
+    font-size: 22px;
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.carousel-nav button:hover,
+.carousel-nav button:focus {
+    background: rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+
+/* Seções extras */
+.categories {
+    background-color: #f9f9f9;
+    color: #222;
+    padding: 80px 60px;
+    text-align: center;
+}
+
+.categories-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.categories-description {
+    font-size: 16px;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.categories-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.category-card {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px 40px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.category-card:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.topics {
+    background-color: #fff;
+    color: #222;
+    padding: 80px 60px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.topics .container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.topic {
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+.topic-title {
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.topic-text {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.85;
+    max-width: 800px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .hero {
+        padding: 0 30px;
+    }
+
+    .text-block h1 {
+        font-size: 48px;
+        line-height: 1.2;
+    }
+
+    .text-block p {
+        font-size: 14px;
+        line-height: 1.8;
+        margin: 16px 0;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .browse-button {
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+
+    .page-number {
+        font-size: 22px;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        min-width: 140px;
+        height: 220px;
+    }
+
+    .card span {
+        font-size: 11px;
+    }
+
+    .carousel {
+        gap: 14px;
+    }
+}
+/* Estilo para o segundo carrossel */
+#carousel2-container {
+    margin-top: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+#carousel2 {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+}
+
+#carousel2::-webkit-scrollbar {
+    display: none;
+}
+
+#carousel2 .card {
+    min-width: 160px;
+    height: 240px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#carousel2 .card:hover {
+    transform: scale(1.05);
+}
+
+#carousel2 .card img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+
+#carousel2 .card span {
+    display: block;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #222;
+}
+
+/* Setas específicas do segundo carrossel */
+#carousel2-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20 20px;
+    transform: translateY(-610%);
+    pointer-events: none;
+}
+#carousel2-nav button {
+    width: 38px;
+    height: 38px;
+    background: rgba(90, 90, 90, 0.1);
+    border: none;
+    color: #707070;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    pointer-events: all;
+    backdrop-filter: blur(6px);
+}
+
+#carousel2-nav button:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+/* Mini categorias maiores abaixo das categorias populares */
+.mini-categories {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.mini-category {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    width: 300px; /* Aumentei a largura */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.mini-category:hover {
+    transform: translateY(-8px);
+}
+
+.mini-category img {
+    width: 100%;
+    height: 220px; /* Aumentei a altura da imagem */
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.mini-category p {
+    font-size: 18px; /* Texto maior */
+    color: #222;
+    font-weight: 700;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+/* Estilo padrão para desktop */
+.carousel,
+#carousel2 {
+    display: flex;
+    gap: 20px;
+    overflow: hidden; /* No desktop: sem scroll no touch */
+}
+
+/* Botão Hamburguer padrão (escondido) */
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #000000;
+}
+
+/* Responsivo para tablets grandes (iPads, até 1024px) */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 0 40px;
+    }
+    .text-block h1 {
+        font-size: 60px;
+    }
+    .nav-links a {
+        margin-left: 20px;
+    }
+    .categories {
+        padding: 60px 40px;
+    }
+    .topics {
+        padding: 60px 40px;
+    }
+
+    /* Ativa o carrossel arrastável em tablet e celular */
+    .carousel,
+    #carousel2 {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    .carousel::-webkit-scrollbar,
+    #carousel2::-webkit-scrollbar {
+        display: none;
+    }
+    .card {
+        scroll-snap-align: start;
+    }
+
+    /* Some os botões de navegação em telas menores */
+    .carousel-nav,
+    #carousel2-nav {
+        display: none;
+    }
+}
+
+/* Responsivo para tablets médios e celulares grandes (até 768px) */
+@media (max-width: 768px) {
+    .hero {
+        padding: 0 30px;
+    }
+    .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .menu-toggle {
+        display: block;
+        font-size: 30px;
+        margin-left: auto; /* Empurra o botão pra direita */
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.9);
+        position: absolute;
+        top: 80px;
+        right: 30px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        z-index: 1000;
+    }
+    .nav-links a {
+        margin: 10px 0;
+        color: #000;
+        font-weight: 600;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .text-block h1 {
+        font-size: 48px;
+        line-height: 1.2;
+    }
+    .text-block p {
+        font-size: 14px;
+        margin: 16px 0;
+    }
+    .categories-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .mini-categories {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+/* Responsivo para celulares médios (até 600px) */
+@media (max-width: 600px) {
+    .text-block h1 {
+        font-size: 36px;
+    }
+    .browse-button {
+        font-size: 12px;
+        padding: 10px 20px;
+    }
+    .hero-content {
+        padding-bottom: 40px;
+    }
+    .card {
+        min-width: 140px;
+        height: 200px;
+    }
+    .card span {
+        font-size: 11px;
+    }
+    .carousel {
+        gap: 14px;
+    }
+}
+
+/* Responsivo para celulares pequenos (iPhone SE, Android pequenos, até 480px) */
+@media (max-width: 480px) {
+    .hero {
+        padding: 0 20px;
+    }
+    .text-block h1 {
+        font-size: 28px;
+    }
+    .text-block p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    .categories {
+        padding: 40px 20px;
+    }
+    .topics {
+        padding: 40px 20px;
+    }
+    .mini-category {
+        width: 100%;
+    }
+    .mini-category img {
+        height: 180px;
+    }
+}
+.final-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.final-heading {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background-color: #a01919b0;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 30px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.5s ease;
+}
+
+.download-button .truck {
+    display: inline-block;
+    font-size: 24px;
+    position: relative;
+    left: 0;
+    transition: left 2s ease;
+}
+
+.download-button .smoke {
+    display: inline-block;
+    opacity: 0;
+    font-size: 20px;
+    position: absolute;
+    left: 10px;
+    animation: smoke-move 2s infinite;
+    pointer-events: none;
+}
+
+.download-button .text {
+    font-size: 16px;
+    transition: opacity 1.5s ease;
+}
+
+.download-button.moving .truck {
+    animation: truck-move 2s forwards;
+}
+
+.download-button.moving .smoke {
+    opacity: 1;
+}
+
+.download-button.moving .text {
+    animation: text-fade 2s forwards;
+}
+
+/* Caminhão andando */
+@keyframes truck-move {
+    0% { left: 0; }
+    100% { left: 150px; }
+}
+
+/* Fumaça subindo */
+@keyframes smoke-move {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-10px) scale(1.2); opacity: 0.5; }
+    100% { transform: translateY(-20px) scale(1.5); opacity: 0; }
+}
+
+/* Texto apagando conforme o caminhão passa */
+@keyframes text-fade {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0; }
+}
